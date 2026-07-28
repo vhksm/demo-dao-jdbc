@@ -9,10 +9,12 @@ import java.time.LocalDateTime;
 import java.util.Date;
 import java.util.List;
 import java.util.Locale;
+import java.util.Scanner;
 
 public class Program {
     public static void main(String[] args) {
         Locale.setDefault(Locale.US);
+        Scanner sc = new Scanner(System.in);
 
         SellerDao sellerDao = DaoFactory.createSellerDao();
 
@@ -44,5 +46,14 @@ public class Program {
         seller.setName("Martha Wayne");
         sellerDao.update(seller);
         System.out.println("Update completed!");
+
+        System.out.println("\n === TEST 6: seller deleteById ===");
+        System.out.println("Enter id for delete test: ");
+        int id = sc.nextInt();
+        sellerDao.deleteById(id);
+        System.out.println("Delete completed! ");
+
+
+        sc.close();
     }
 }
