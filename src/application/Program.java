@@ -6,10 +6,13 @@ import model.entities.Department;
 import model.entities.Seller;
 
 import java.time.LocalDateTime;
+import java.util.Date;
 import java.util.List;
+import java.util.Locale;
 
 public class Program {
     public static void main(String[] args) {
+        Locale.setDefault(Locale.US);
 
         SellerDao sellerDao = DaoFactory.createSellerDao();
 
@@ -30,5 +33,10 @@ public class Program {
         for (Seller obj : list) {
             System.out.println(obj);
         }
+
+        System.out.println("\n === TEST 4: seller insert ===");
+        Seller newSeller = new Seller(null, "Greg", "greg@gmail.com", LocalDateTime.of(1988, 02, 22, 0, 0, 0), 4000.0, department);
+        sellerDao.insert(newSeller);
+        System.out.println("Inserted! New ID = " + newSeller.getId());
     }
 }
